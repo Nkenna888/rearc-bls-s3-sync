@@ -1,33 +1,24 @@
 ## Rearc Quest - Step 1: BLS Data Sync to AWS S3
 
-This Python script downloads public time series data from the Bureau of Labor Statistics (BLS) and keeps an S3 bucket in sync with it.
+This step automates the ingestion of BLS productivity time series data from:
 
-## Features
+🔗 https://download.bls.gov/pub/time.series/pr/
 
-- Scrapes all `.txt` and `.dat` files from [BLS public dataset](https://download.bls.gov/pub/time.series/pr/)
-- Uses AWS S3 to store data
-- Avoids re-uploading existing files
-- Deletes S3 files no longer found in the source
+###  Features
 
-## Setup
+- Uses `requests` and `BeautifulSoup` to scrape available `.txt` and `.dat` files.
+- Uploads new or updated files to an S3 bucket under the prefix `bls-time-series/`.
+- Deletes stale files in S3 that no longer exist at the source.
+- Respects BLS's access policy by providing a `User-Agent` header.
+- Avoids redundant uploads and handles dynamic file additions/removals.
 
-1. Create and configure your S3 bucket.
-2. Set your AWS credentials with `aws configure` or environment variables.
-3. Replace placeholders in `sync_bls_to_s3.py`:
-   - `S3_BUCKET = 'rearc-bls-yourname'`
-   - `USER_AGENT = 'Your Name (your.email@example.com)'`
-
-## Output
-
-The following is a direct URL to one of the synced files:
-
-📄 [pr.txt](https://rearc-bls-nahom.s3.amazonaws.com/bls-time-series/pr.txt)
+###  Script: `step-1.py`
 
 
 ## Run
 
 pip install -r requirements.txt
-python sync_bls_to_s3.py
+python step-1.py
 
 ---
 
