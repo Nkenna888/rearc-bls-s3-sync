@@ -22,15 +22,15 @@ python step-1.py
 
 ---
 
-## Part 2 - DataUSA API
+## Step 2: DataUSA Population JSON → S3
 
-This script fetches national population data from DataUSA and saves it to S3 as a JSON file.
+This script downloads U.S. population data from the DataUSA API and stores it in S3.
 
-**API Endpoint:**  
-https://datausa.io/api/data?drilldowns=Nation&measures=Population
+### 🔗 Source API
 
-**S3 URL (public):**  
-https://rearc-bls-nahom.s3.amazonaws.com/datausa/population.json
+- [API Link](https://datausa.io/api/data?drilldowns=Nation&measures=Population)
+- [JSON mirror used in script](https://rearc-bls-nahom.s3.amazonaws.com/datausa/population.json)
+
 
 ---
 
